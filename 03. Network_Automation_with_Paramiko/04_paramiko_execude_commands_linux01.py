@@ -9,15 +9,19 @@ print(type(ssh_client))
 # this will accept the host key, message that we see when using ssh to connect to the server
 ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 # print('Connecting to 192.168.122.2')
-router = {'hostname': '192.168.122.2', 'port': '22', 'username': 'admin', 'password': 'xxxx'}
-ssh_client.connect(**router, look_for_keys=False, allow_agent=False)
+#### replace the username and password with your linux username and password ####
+linux = {'hostname': '172.25.239.185', 'port': '22', 'username': 'username', 'password': 'password'}
+ssh_client.connect(**linux, look_for_keys=False, allow_agent=False)
 
 # this will request interactive shell session on the channel
 shell = ssh_client.invoke_shell()
 
-shell.send('enable\n')
-shell.send('admin\n')
-shell.send('conf t\n')
+shell.send('cat /etc/passwd\n')
+time.sleep(1)
+
+shell.send('sudo cat /etc/shadow\n')
+#### replace the password with your linux root password ####
+shell.send('root_password\n')
 time.sleep(1)
 
 output = shell.recv(10000).decode()
