@@ -1,0 +1,4 @@
+Line added with r+.
+ine.
+Forth line.
+Fifth line.
