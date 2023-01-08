@@ -33,6 +33,7 @@ for router in routers:
     shell.send('show ip protocols\n')
     time.sleep(2)
 
+    # converting bytes to string
     output = shell.recv(10000).decode()
     print(output)
 
