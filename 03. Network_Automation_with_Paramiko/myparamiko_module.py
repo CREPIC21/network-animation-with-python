@@ -40,3 +40,4 @@ if __name__ == '__main__':
     send_command(shell, 'show ip interface brief')
     output = show(shell)
     print(output)
+    close(client)

@@ -17,3 +17,6 @@ myparamiko_module.send_command(shell, 'tail -n 1 /etc/group')
 output = myparamiko_module.show(shell)
 print(output)
 
+# closing the connection before closing the script
+myparamiko_module.close(client)
+
