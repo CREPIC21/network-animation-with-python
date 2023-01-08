@@ -26,12 +26,17 @@ def close(ssh_client):
         print('Closing connection')
         ssh_client.close()
 
-client = connect('192.168.122.4', '22', 'admin', 'admin')
-shell = get_shell(client)
-send_command(shell, 'enable')
-send_command(shell, 'admin')
-send_command(shell, 'terminal length 0')
-send_command(shell, 'show version')
-send_command(shell, 'show ip interface brief')
-output = show(shell)
-print(output)
+"""
+- this code will be executed only when directly running this script
+- when we are importing this script to another script as a module then we want to run all the functions with new arguments
+"""
+if __name__ == '__main__':
+    client = connect('192.168.122.4', '22', 'admin', 'admin')
+    shell = get_shell(client)
+    send_command(shell, 'enable')
+    send_command(shell, 'admin')
+    send_command(shell, 'terminal length 0')
+    send_command(shell, 'show version')
+    send_command(shell, 'show ip interface brief')
+    output = show(shell)
+    print(output)
