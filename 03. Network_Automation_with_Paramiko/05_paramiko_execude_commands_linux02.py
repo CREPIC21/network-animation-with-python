@@ -31,8 +31,13 @@ output = stdout.read()
 output = output.decode()
 print(stderr.read().decode())
 
-
 if ssh_client.get_transport().is_active() == True:
     print('Closing connection')
     ssh_client.close()
+
+"""IMPORTANT"""
+"""
+- to ssh in linux machine ssh client needs to be installed and enabled on linux machine
+-- https://www.cyberciti.biz/faq/ubuntu-linux-install-openssh-server/
+"""
 

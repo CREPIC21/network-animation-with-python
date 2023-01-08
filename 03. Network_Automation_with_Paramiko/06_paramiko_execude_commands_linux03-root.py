@@ -22,10 +22,13 @@ time.sleep(2)
 stdin, stdout, stderr = ssh_client.exec_command('cat /etc/passwd\n')
 print(stdout.read().decode())
 
-
-
-
 if ssh_client.get_transport().is_active() == True:
     print('Closing connection')
     ssh_client.close()
+
+"""IMPORTANT"""
+"""
+- to ssh in linux machine ssh client needs to be installed and enabled on linux machine
+-- https://www.cyberciti.biz/faq/ubuntu-linux-install-openssh-server/
+"""
 

@@ -17,7 +17,6 @@ router = {'hostname': '192.168.122.2', 'port': '22', 'username': 'admin', 'passw
 # double ** will unpack the dictionary
 ssh_client.connect(**router, look_for_keys=False, allow_agent=False)
 
-
 # checking if the connection is active
 print(ssh_client.get_transport().is_active())
 
