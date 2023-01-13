@@ -10,7 +10,7 @@ print(type(ssh_client))
 ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 # print('Connecting to 192.168.122.2')
 #### replace the username and password with your linux username and password ####
-linux = {'hostname': '172.25.239.185', 'port': '22', 'username': 'username', 'password': 'password'}
+linux = {'hostname': '172.20.231.241', 'port': '22', 'username': 'username', 'password': 'password'}
 ssh_client.connect(**linux, look_for_keys=False, allow_agent=False)
 
 stdin, stdout, stderr = ssh_client.exec_command('sudo useradd u2\n', get_pty=True)
