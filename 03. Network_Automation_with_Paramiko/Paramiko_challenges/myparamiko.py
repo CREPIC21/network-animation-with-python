@@ -18,6 +18,14 @@ def send_command(shell, command, timout=1):
     shell.send(command + '\n')
     time.sleep(timout)
 
+def send_commands_from_list(shell, commands):
+    for command in commands:
+        # print(f'Running command: {cmd}...')
+        # shell.send(cmd + '\n')
+        # time.sleep(timout)
+        print(command)
+        send_command(shell, command)
+
 def show(shell, n=10000):
     output = shell.recv(n)
     return output.decode()
@@ -28,15 +36,18 @@ def close(ssh_client):
         ssh_client.close()
 
 if __name__ == '__main__':
-    router1 = {'server_ip': '10.1.1.10', 'server_port': '22', 'user':'u1', 'passwd':'cisco'}
+    router1 = {'server_ip': '192.168.122.4', 'server_port': '22', 'user':'admin', 'passwd':'admin'}
     client = connect(**router1)
     shell = get_shell(client)
 
     send_command(shell, 'enable')
-    send_command(shell, 'cisco') # this is the enable password
-    send_command(shell, 'term len 0')
-    send_command(shell, 'sh version')
-    send_command(shell, 'sh ip int brief')
+    send_command(shell, 'admin') # this is the enable password
+    # send_command(shell, 'term len 0')
+    # send_command(shell, 'sh version')
+    # send_command(shell, 'sh ip int brief')
+
+    commands = ['show ip protocols', ' show ip interface brief', ' show ip interface brief']
+    send_commands_from_list(shell, commands)
 
     output = show(shell)
     print(output)
