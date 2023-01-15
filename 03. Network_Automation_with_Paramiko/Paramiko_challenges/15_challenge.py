@@ -24,9 +24,6 @@ def execute_command(device_info, command):
     print(output)
     myparamiko.close(client)
 
-# for router in all_routers:
-#     execute_command(router, "show ip interface brief")
-
 threads = list()
 for router in all_routers:
     # threading will allow the script to run for all three routers in the same time

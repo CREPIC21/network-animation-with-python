@@ -13,14 +13,6 @@ router3 = {'server_ip': '192.168.122.8', 'server_port': '22', 'user': 'admin', '
 all_routers = [router1, router2, router3]
 print(all_routers)
 
-# for router in all_routers:
-#     client = myparamiko.connect(**router)
-#     shell = myparamiko.get_shell(client)
-#     myparamiko.send_commands_from_text_file(shell, f'./protocols_config/{router["config"]}')
-#     output = myparamiko.show(shell)
-#     print(output)
-#     myparamiko.close(client)
-
 def execute_commands_from_text_file(device_info):
     client = myparamiko.connect(**device_info)
     print(device_info)
