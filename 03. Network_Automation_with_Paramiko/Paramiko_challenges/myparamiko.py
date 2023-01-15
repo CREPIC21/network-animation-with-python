@@ -1,7 +1,7 @@
 import paramiko
 import time
 
-def connect(server_ip, server_port, user, passwd):
+def connect(server_ip, server_port, user, passwd, config=""):
     ssh_client = paramiko.SSHClient()
     ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
     print(f'Connecting to {server_ip}')
@@ -20,11 +20,15 @@ def send_command(shell, command, timout=1):
 
 def send_commands_from_list(shell, commands):
     for command in commands:
-        # print(f'Running command: {cmd}...')
-        # shell.send(cmd + '\n')
-        # time.sleep(timout)
-        print(command)
+        # print(command)
         send_command(shell, command)
+
+# SOLUTION
+def send_commands_from_text_file(shell, text_file_location):
+    with open(text_file_location, 'r') as f:
+        commands = f.read().splitlines()
+        # print(commands)
+        send_commands_from_list(shell, commands)
 
 def show(shell, n=10000):
     output = shell.recv(n)
@@ -32,7 +36,7 @@ def show(shell, n=10000):
 
 def close(ssh_client):
     if ssh_client.get_transport().is_active() == True:
-        print('Closing connection')
+        print(f'Closing connection...')
         ssh_client.close()
 
 if __name__ == '__main__':
@@ -40,14 +44,16 @@ if __name__ == '__main__':
     client = connect(**router1)
     shell = get_shell(client)
 
-    send_command(shell, 'enable')
-    send_command(shell, 'admin') # this is the enable password
+    # send_command(shell, 'enable')
+    # send_command(shell, 'admin') # this is the enable password
     # send_command(shell, 'term len 0')
     # send_command(shell, 'sh version')
     # send_command(shell, 'sh ip int brief')
 
-    commands = ['show ip protocols', ' show ip interface brief', ' show ip interface brief']
-    send_commands_from_list(shell, commands)
+    # commands = ['show ip protocols', 'show ip interface brief', 'show ip interface brief']
+    # send_commands_from_list(shell, commands)
+
+    send_commands_from_text_file(shell, 'commands.txt')
 
     output = show(shell)
     print(output)
