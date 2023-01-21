@@ -1,4 +1,5 @@
 from netmiko import ConnectHandler
+import time
 import logging # https://github.com/ktbyers/netmiko/blob/develop/COMMON_ISSUES.md
 logging.basicConfig(filename='test.log', level=logging.DEBUG)
 logger = logging.getLogger("netmiko")
@@ -18,7 +19,12 @@ cisco_device = {
 connection = ConnectHandler(**cisco_device)
 
 # sending a command and getting the output
-output = connection.send_command('sh ip int brief')
+# output = connection.send_command('sh ip int brief')
+# print(output)
+
+connection.write_channel('show version\n')
+time.sleep(2)
+output = connection.read_channel()
 print(output)
 
 # closing the connection
