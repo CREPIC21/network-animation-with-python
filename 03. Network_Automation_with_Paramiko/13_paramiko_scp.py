@@ -16,7 +16,6 @@ ssh_client.set_missing_host_key_policy(paramiko.AutoAddPolicy())
 password = getpass.getpass('Enter password: ')
 
 #### replace the username and password with your linux username and password ####
-# - port is 2299
 linux = {'hostname': '172.20.231.241', 'port': '22', 'username': username, 'password': password}
 ssh_client.connect(**linux, look_for_keys=False, allow_agent=False)
 
