@@ -39,11 +39,6 @@ connection.send_command('username danijel secret admin')
 # exiting config mode
 connection.exit_config_mode()
 print(connection.check_config_mode())
-	
-
-# sending a command and getting the output
-#output = 
-#print(output)
 
 # closing the connection
 print('Closing connection')
