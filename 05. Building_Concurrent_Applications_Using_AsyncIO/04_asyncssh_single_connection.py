@@ -26,7 +26,8 @@ async def connect_and_run(host, username, password, commands):
 # print(f'STDERR:\n {result.stderr}')
 
 commands = ('ifconfig', 'who -a', 'uname -a')
-results = asyncio.run(connect_and_run('fe80::20c:29ff:fee9:626f', 'danijel', '1212', commands))
+#### replace the password with your linux root password ####
+results = asyncio.run(connect_and_run('fe80::20c:29ff:fee9:626f', 'username', 'password', commands))
 for result in results:
     print(f'STDOUT:\n {result.stdout}')
     print(f'STDERR:\n {result.stderr}')

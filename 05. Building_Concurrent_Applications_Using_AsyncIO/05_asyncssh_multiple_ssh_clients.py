@@ -32,23 +32,24 @@ async def run_multiple_clients(hosts):
             print(result.stdout, end='')
         print('#'*50)
 
+#### replace the password with your linux root password ####
 hosts = [
     {
         'host': 'fe80::20c:29ff:fee9:626f',
-        'username': 'danijel',
-        'password': '1212',
+        'username': 'username',
+        'password': 'password',
         'command': 'ifconfig'
     },
     {
         'host': 'fe80::20c:29ff:fee9:626f',
-        'username': 'danijel',
-        'password': '1212',
+        'username': 'username',
+        'password': 'password',
         'command': 'who -a'
     },
     {
         'host': 'fe80::20c:29ff:fee9:626f',
-        'username': 'danijel',
-        'password': '1212',
+        'username': 'username',
+        'password': 'password',
         'command': 'uname -a'
     }
 ]
