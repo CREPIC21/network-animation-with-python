@@ -95,11 +95,11 @@ for ip in routers_ips:
 	
 # starting each thread in for loop
 for th in threads:
-	th.start()
+    th.start()
 	
 # waiting for threads to finish
 for th in threads:
-	th.join() # join method will make the main program wait for each thread to finish executing
+    th.join() # join method will make the main program wait for each thread to finish executing
 
 end_conc = time.time()
 # getting the total execution time of the script in seconds
