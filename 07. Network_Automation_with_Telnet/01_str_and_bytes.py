@@ -14,3 +14,4 @@ for b in b2:
 
 s2_decoded = b2.decode()
 print(s2_decoded)
+
