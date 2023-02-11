@@ -1,5 +1,5 @@
 enable
-cisco
+admin
 conf t
 router rip
 version 2
