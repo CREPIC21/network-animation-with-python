@@ -1,0 +1,11 @@
+[routers]
+# 192.168.122.4
+router01
+192.168.122.3
+192.168.122.8
+
+# below added to avoid the error in terminal:
+# "fatal: [router01]: FAILED! => {"msg": "Unable to automatically determine host network os. Please manually configure ansible_network_os value for this host"}"
+[routers:vars]
+ansible_network_os=ios
+

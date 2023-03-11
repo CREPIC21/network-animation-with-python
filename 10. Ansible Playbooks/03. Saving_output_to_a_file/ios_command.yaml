@@ -1,0 +1,29 @@
+---
+- name: Running show commands on Cisco IOS
+  hosts: routers
+  gather_facts: false
+  connection: network_cli
+
+  tasks:
+    - name: Run multiple commands on Cisco IOS nodes
+      ios_command: # ansible module
+        commands: # commands to run
+          - show version
+
+      register: my_config    #register the output in a variable named output
+
+    - name: Save output to a file on a disk
+      copy:
+        content: "{{my_config.stdout[0]}}"
+        dest: "./output_files/{{inventory_hostname}}.txt" # inventory_hostname is a built in variable 
+
+...
+
+
+# Description:
+# Run show commands using ios_command module
+# http://docs.ansible.com/ansible/latest/ios_command_module.html
+
+# Command to run:
+# ansible-playbook -i ./hosts ./ios_command.yaml -u admin -k
+# both hosts and yaml file are in the current working directory
