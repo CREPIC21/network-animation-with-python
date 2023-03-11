@@ -1,0 +1,25 @@
+[routers]
+# 192.168.122.4
+# we can also place variables in below [routers:vars] file 
+router01 # ansible_user=admin ansible_port=22 ansible_ssh_pass=admin ansible_become_pass=admin ansible_network_os=ios ansible_become_method=enable ansible_become=yes
+192.168.122.3 # ansible_user=admin ansible_port=22 ansible_ssh_pass=admin ansible_become_pass=admin ansible_network_os=ios ansible_become_method=enable ansible_become=yes
+192.168.122.8 # ansible_user=admin ansible_port=22 ansible_ssh_pass=admin ansible_become_pass=admin ansible_network_os=ios ansible_become_method=enable ansible_become=yes
+
+# if we have a router with different username, password or any other parameter we can define it directly next to the node name/IP as this takes precedence over [routers:vars] file
+# 192.168.122.4 ansible_become_pass=newadminpass 
+
+# below added to avoid the error in terminal:
+# "fatal: [router01]: FAILED! => {"msg": "Unable to automatically determine host network os. Please manually configure ansible_network_os value for this host"}"
+[routers:vars]
+ansible_user=admin 
+ansible_port=22 
+ansible_ssh_pass=admin 
+ansible_become_pass=admin 
+ansible_network_os=ios 
+ansible_become_method=enable 
+ansible_become=yes
+
+# global variables for all groups in the file
+# [all:vars]
+# ansible_port=22 
+
