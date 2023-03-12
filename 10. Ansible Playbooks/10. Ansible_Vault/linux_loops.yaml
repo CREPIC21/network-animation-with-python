@@ -1,0 +1,36 @@
+- name: Run a Loop, Create Multiple Users
+  hosts: server1
+  gather_facts: no
+  become: yes
+  become_user: root
+  connection: ssh
+ # vars:
+ #  new_users:
+ #    - u1
+ #    - u2
+ #    - u3
+  tasks:
+    - name: Add users using a loop
+      user:
+        name: "{{ item.name }}"
+        # state: present # if the user already exists nothing will happen
+        state: absent # this will delete the users
+        groups: "{{ item.groups }}"
+      loop:
+        - { name: "testuser1", groups: "sudo" }
+        - { name: "testuser2", groups: "sudo" }
+...
+
+
+# Command to run:
+# ansible-playbook -i ./inventory ./linux_loops.yaml --ask-vault-pass -e@./vault.yaml
+
+# check on server if users were created using command: tail /etc/passwd
+
+### Ansible Vault ###
+# """
+# ansible-vault create vault.yaml   -> create vault
+# ansible-vault edit vault.yaml     -> edit vault file
+# ansible-vault rekey vault.yaml    -> change vault password
+# ansible-vault view vault.yaml     -> display vault content
+# """

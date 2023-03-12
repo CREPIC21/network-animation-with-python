@@ -1,0 +1,22 @@
+---
+- name: Configuring Cisco IOS Devices
+  gather_facts: no
+  hosts: routers
+  connection: network_cli
+
+  tasks:
+    - name: Configure OSPF
+      ios_config:
+        save_when: modified # the running config will be saved to startup config if any changes were made with the playbook
+        lines:
+          - network 0.0.0.0 0.0.0.0 area 0
+          - distance 50
+          - default-information originate
+        parents: router ospf 1 # this means that the 3 commands above will be checked against section "router ospf 1" in this line and if they don't exist ansible will execute the above 3 commands
+      register: output
+
+    - name: Printing at the console
+      debug: var=output
+...
+# Command to run:
+# ansible-playbook -i ./inventory ios_config_parents.yaml

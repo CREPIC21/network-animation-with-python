@@ -1,0 +1,22 @@
+[routers]
+router01
+router02 ansible_host=192.168.122.3 
+router03 ansible_host=192.168.122.8
+
+
+
+[routers:vars]
+ansible_network_os=ios
+ansible_user=admin
+ansible_ssh_pass=admin
+ansible_become=yes
+ansible_become_method=enable
+ansible_become_pass=admin
+
+[all:vars]
+ansible_port=22
+
+
+
+[servers]
+1.1.1.1

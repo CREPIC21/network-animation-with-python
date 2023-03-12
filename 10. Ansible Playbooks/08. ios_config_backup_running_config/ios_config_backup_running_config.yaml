@@ -1,0 +1,15 @@
+---
+- name: Configuring Cisco IOS Devices
+  gather_facts: no
+  hosts: routers
+  connection: network_cli
+
+  tasks:
+    - name: Backup Running Config
+      ios_config:
+        backup: yes
+...
+# Command to run:
+# ansible-playbook -i ./inventory ios_config_backup_running_config.yaml
+
+# the backup folder will be created in current working directory
